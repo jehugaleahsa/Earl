@@ -5,7 +5,7 @@ Build URLs from RFC 6570 templates.
 Download using NuGet: [Earl](http://nuget.org/packages/Earl)
 
 ## Overview
-Earl allows you to define URI templates and build up complex URLs by substituting values for placeholders. Earl supports level 4 URI templates based on RFC 6570. This makes it a lot easier to build complex URLs, especially those containing embedded IDs, query strings, path segments (/), fragments (#) and other URI oddities. For example, here is a very complex URI that would be a pain to build otherwise:
+Earl allows you to define URI templates and build up complex URLs by substituting values for placeholders. Earl supports level 4 URI templates based on RFC 6570. This makes it a lot easier to build complex URLs, especially those containing embedded IDs, query strings, path segments (`/`), fragments (`#`) and other URI oddities. For example, here is a very complex URI that would be a pain to build otherwise:
 
     UriTemplate template = new UriTemplate("http://localhost{+port}/api{/version}/customers{?q,pagenum,pagesize}{#section}");
     string uri = template.Expand(new
@@ -18,7 +18,7 @@ Earl allows you to define URI templates and build up complex URLs by substitutin
         section = "results"
     });
 
-`UriTemplate` takes an object or `IDictionary` with properties/keys matching placeholer names in the template. It replaces the placeholders with the values in the data source. The template above will result in http://localhost:8080/api/v2/customers?q=rest&pagenum=3&pagesize=#results.
+`UriTemplate` takes an object or `IDictionary` with properties/keys matching placeholer names in the template. It replaces the placeholders with the values in the data source. The template above will result in `http://localhost:8080/api/v2/customers?q=rest&pagenum=3&pagesize=#results`.
 
 ## License
 This is free and unencumbered software released into the public domain.
