@@ -1,20 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BFB62DE2-6549-446D-8C4F-58E6FC83D171}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC9E5014-9CD1-4ED3-A8BA-8966FC44332A}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Earl", "src\Earl\Earl.xproj", "{27DC641B-941C-4013-B197-0290C4A677CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{409449BF-7B59-4086-BA2E-FDC5A31E15A1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Earl.Tests", "test\Earl.Tests\Earl.Tests.xproj", "{E9D31F3E-FCBC-4095-9A27-A39B2DEE6F90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Earl", "src\Earl\Earl.csproj", "{20856D48-8664-4CFD-9211-416A2B9A7BEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Earl.Tests", "test\Earl.Tests\Earl.Tests.csproj", "{81F0CE59-6B33-49BF-ABE4-9BAA33DEA441}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,20 +19,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{27DC641B-941C-4013-B197-0290C4A677CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27DC641B-941C-4013-B197-0290C4A677CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27DC641B-941C-4013-B197-0290C4A677CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27DC641B-941C-4013-B197-0290C4A677CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9D31F3E-FCBC-4095-9A27-A39B2DEE6F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9D31F3E-FCBC-4095-9A27-A39B2DEE6F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9D31F3E-FCBC-4095-9A27-A39B2DEE6F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9D31F3E-FCBC-4095-9A27-A39B2DEE6F90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20856D48-8664-4CFD-9211-416A2B9A7BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20856D48-8664-4CFD-9211-416A2B9A7BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20856D48-8664-4CFD-9211-416A2B9A7BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20856D48-8664-4CFD-9211-416A2B9A7BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F0CE59-6B33-49BF-ABE4-9BAA33DEA441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F0CE59-6B33-49BF-ABE4-9BAA33DEA441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F0CE59-6B33-49BF-ABE4-9BAA33DEA441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F0CE59-6B33-49BF-ABE4-9BAA33DEA441}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{27DC641B-941C-4013-B197-0290C4A677CB} = {BFB62DE2-6549-446D-8C4F-58E6FC83D171}
-		{E9D31F3E-FCBC-4095-9A27-A39B2DEE6F90} = {409449BF-7B59-4086-BA2E-FDC5A31E15A1}
+		{20856D48-8664-4CFD-9211-416A2B9A7BEB} = {BFB62DE2-6549-446D-8C4F-58E6FC83D171}
+		{81F0CE59-6B33-49BF-ABE4-9BAA33DEA441} = {409449BF-7B59-4086-BA2E-FDC5A31E15A1}
 	EndGlobalSection
 EndGlobal
