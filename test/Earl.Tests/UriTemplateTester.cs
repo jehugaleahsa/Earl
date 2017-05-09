@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Earl;
 using Xunit;
+using System;
 
 namespace Earl.Tests
 {
@@ -17,6 +18,47 @@ namespace Earl.Tests
         }
 
         [Fact]
+        public void ShouldExpandGuid()
+        {
+            var guid = Guid.Parse("d3ae4104-d627-493e-a9fc-74b80b2fbd9a");
+            UriTemplate template = new UriTemplate("{guid}");
+            string result = template.Expand(new { guid = guid });
+            Assert.Equal("d3ae4104-d627-493e-a9fc-74b80b2fbd9a", result);
+        }
+        [Fact]
+        public void ShouldExpandDateTime()
+        {
+            var datetime = DateTimeOffset.Parse("2017-05-09T16:11:22.0000000+02:00");
+            UriTemplate template = new UriTemplate("{datetime}");
+            string result = template.Expand(new { datetime = datetime });
+            Assert.Equal("2017-05-09T16%3A11%3A22.0000000%2B02%3A00", result);
+        }
+        [Fact]
+        public void ShouldExpandDouble()
+        {
+            var @double = 10.458;
+            UriTemplate template = new UriTemplate("{double}");
+            string result = template.Expand(new { @double = @double });
+            Assert.Equal("10.458", result);
+        }
+        [Fact]
+        public void ShouldExpandFloat()
+        {
+            var @float = 10.458f;
+            UriTemplate template = new UriTemplate("{float}");
+            string result = template.Expand(new { @float = @float });
+            Assert.Equal("10.458", result);
+        }
+        [Fact]
+        public void ShouldExpandInt()
+        {
+            var @int = 10458;
+            UriTemplate template = new UriTemplate("{int}");
+            string result = template.Expand(new { @int = @int });
+            Assert.Equal("10458", result);
+        }
+
+        [Fact]
         public void ShouldExpandVariableWithReservedCharacter()
         {
             UriTemplate template = new UriTemplate("{hello}");
@@ -24,6 +66,21 @@ namespace Earl.Tests
             Assert.Equal("Hello+World!", result);
         }
 
+        [Fact]
+        public void ShouldExpandVariableDictionary()
+        {
+            UriTemplate template = new UriTemplate("{var}");
+            string result = template.Expand(new Dictionary<string,object> { { "var", "value" } });
+            Assert.Equal("value", result);
+        }
+
+        [Fact]
+        public void ShouldExpandVariableWithReservedCharacterDictionary()
+        {
+            UriTemplate template = new UriTemplate("{hello}");
+            string result = template.Expand(new Dictionary<string, object> { { "hello", "Hello World!" } });
+            Assert.Equal("Hello+World!", result);
+        }
         #endregion
 
         #region Level 2
@@ -927,7 +984,7 @@ namespace Earl.Tests
         [Fact]
         public void ShouldHandleMultipleSubstitutions1()
         {
-            UriTemplate template = new UriTemplate("http://localhost{+port}/api{/version}/customers{?q,pagenum,pagesize}{#section}");
+            UriTemplate template = new UriTemplate("http://localhost{+port}/api{/version}/customers{?q,pagenum,pagesize,start}{#section}");
             string uri = template.Expand(new
             {
                 port = ":8080",
@@ -935,9 +992,10 @@ namespace Earl.Tests
                 q = "rest",
                 pagenum = 3,
                 pagesize = (int?)null,
-                section = "results"
+                section = "results",
+                start = new DateTime(2017, 05, 09, 16, 11, 22, 0, DateTimeKind.Local)
             });
-            Assert.Equal("http://localhost:8080/api/v2/customers?q=rest&pagenum=3&pagesize=#results", uri);
+            Assert.Equal(uri = "http://localhost:8080/api/v2/customers?q=rest&pagenum=3&pagesize=&start=2017-05-09T16%3A11%3A22.0000000%2B02%3A00#results", uri);
         }
 
         #endregion
