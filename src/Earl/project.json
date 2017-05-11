@@ -14,7 +14,7 @@
         "System.Reflection": "4.1.0"
       }
     },
-    "net45": {
+    "net451": {
     }
   },
   "language": "en-US",
@@ -36,5 +36,5 @@
     ]
   },
   "title": "Earl",
-  "version": "0.1.0.0"
+  "version": "0.1.1.0"
 }
