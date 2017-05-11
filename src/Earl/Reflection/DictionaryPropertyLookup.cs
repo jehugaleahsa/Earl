@@ -56,7 +56,7 @@ namespace Earl.Reflection
 
             public Type Type
             {
-                get { return typeof(TValue); }
+                get { return Value?.GetType() ?? typeof(TValue); }
             }
 
             public object Value

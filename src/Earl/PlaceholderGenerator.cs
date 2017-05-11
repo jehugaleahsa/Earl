@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Earl.Reflection;
+using System.Globalization;
 
 namespace Earl
 {
@@ -95,7 +96,16 @@ namespace Earl
                 string pairValue = escape(variable, unescaped);
                 return new Tuple<string, string>(pairKey, pairValue);
             }
-            return escape(variable, value.ToString());
+            return escape(variable, toString(value));
+        }
+
+        private string toString(object value)
+        {
+            if (value is DateTime)
+                return ((DateTime)value).ToString("O", CultureInfo.InvariantCulture);
+            if (value is DateTimeOffset)
+                return ((DateTimeOffset)value).ToString("O", CultureInfo.InvariantCulture);
+            return Convert.ToString(value, CultureInfo.InvariantCulture);
         }
 
         private string escape(Variable variable, string value)

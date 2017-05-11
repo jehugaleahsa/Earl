@@ -111,10 +111,19 @@ namespace Earl.Reflection
             { 
                 typeof(string), 
                 typeof(byte), typeof(byte?),
+                typeof(sbyte), typeof(sbyte?),
                 typeof(short), typeof(short?),
+                typeof(ushort), typeof(ushort?),
                 typeof(int), typeof(int?),
+                typeof(uint), typeof(uint?),
                 typeof(long), typeof(long?),
-                typeof(Guid), typeof(Guid?)
+                typeof(ulong), typeof(ulong?),
+                typeof(decimal), typeof(decimal?),
+                typeof(double), typeof(double?),
+                typeof(float), typeof(float?),
+                typeof(Guid), typeof(Guid?),
+                typeof(DateTime), typeof(DateTime?),
+                typeof(DateTimeOffset), typeof(DateTimeOffset?), 
             };
             return simpleTypes.Contains(type);
         }
