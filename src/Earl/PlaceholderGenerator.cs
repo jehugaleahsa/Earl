@@ -102,9 +102,13 @@ namespace Earl
         private string toString(object value)
         {
             if (value is DateTime)
+            {
                 return ((DateTime)value).ToString("O", CultureInfo.InvariantCulture);
+            }
             if (value is DateTimeOffset)
+            {
                 return ((DateTimeOffset)value).ToString("O", CultureInfo.InvariantCulture);
+            }
             return Convert.ToString(value, CultureInfo.InvariantCulture);
         }
 

@@ -42,12 +42,13 @@ namespace Earl.Reflection
 
         public static IEnumerable<object> GetValues(IProperty property, bool isExploded = false)
         {
-            if (isSimpleType(property.Type))
+            Type propertyType = property.Type;
+            if (isSimpleType(propertyType))
             {
                 object result = property.Value;
                 return new object[] { result };
             }
-            else if (isListType(property.Type))
+            else if (isListType(propertyType))
             {
                 var result = (IEnumerable)property.Value;
                 return result.Cast<object>().ToArray();

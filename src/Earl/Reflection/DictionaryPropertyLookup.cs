@@ -56,7 +56,21 @@ namespace Earl.Reflection
 
             public Type Type
             {
-                get { return Value?.GetType() ?? typeof(TValue); }
+                get
+                {
+                    Type inferredType = typeof(TValue);
+                    object value = Value;
+                    if (value == null)
+                    {
+                        return inferredType;
+                    }
+                    Type actualType = value.GetType();
+                    if (Nullable.GetUnderlyingType(inferredType) == actualType)
+                    {
+                        return inferredType;
+                    }
+                    return actualType;
+                }
             }
 
             public object Value

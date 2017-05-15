@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Earl;
 using Xunit;
 using System;
 
@@ -25,14 +24,61 @@ namespace Earl.Tests
             string result = template.Expand(new { guid = guid });
             Assert.Equal("d3ae4104-d627-493e-a9fc-74b80b2fbd9a", result);
         }
+
         [Fact]
-        public void ShouldExpandDateTime()
+        public void ShouldExpandGuid_Dictionary()
+        {
+            var guid = Guid.Parse("d3ae4104-d627-493e-a9fc-74b80b2fbd9a");
+            UriTemplate template = new UriTemplate("{guid}");
+            string result = template.Expand(new Dictionary<string, Guid?>() { { "guid", guid } });
+            Assert.Equal("d3ae4104-d627-493e-a9fc-74b80b2fbd9a", result);
+        }
+
+        [Fact]
+        public void ShouldExpandDateTimeOffset()
         {
             var datetime = DateTimeOffset.Parse("2017-05-09T16:11:22.0000000+02:00");
             UriTemplate template = new UriTemplate("{datetime}");
             string result = template.Expand(new { datetime = datetime });
             Assert.Equal("2017-05-09T16%3A11%3A22.0000000%2B02%3A00", result);
         }
+
+        [Fact]
+        public void ShouldExpandDateTimeOffset_Dictionary()
+        {
+            var datetime = DateTimeOffset.Parse("2017-05-09T16:11:22.0000000+02:00");
+            UriTemplate template = new UriTemplate("{datetime}");
+            string result = template.Expand(new Dictionary<string, DateTimeOffset?>() { { "datetime", datetime } });
+            Assert.Equal("2017-05-09T16%3A11%3A22.0000000%2B02%3A00", result);
+        }
+
+        [Fact]
+        public void ShouldExpandDateTime()
+        {
+            var datetime = new DateTime(2017, 05, 09, 16, 11, 22);
+            UriTemplate template = new UriTemplate("{datetime}");
+            string result = template.Expand(new { datetime = datetime });
+            Assert.Equal("2017-05-09T16%3A11%3A22.0000000", result);
+        }
+
+        [Fact]
+        public void ShouldExpandDateTime_UTC()
+        {
+            var datetime = new DateTime(2017, 05, 09, 16, 11, 22, DateTimeKind.Utc);
+            UriTemplate template = new UriTemplate("{datetime}");
+            string result = template.Expand(new { datetime = datetime });
+            Assert.Equal("2017-05-09T16%3A11%3A22.0000000Z", result);
+        }
+
+        [Fact]
+        public void ShouldExpandDateTime_Dictionary()
+        {
+            var datetime = new DateTime(2017, 05, 09, 16, 11, 22);
+            UriTemplate template = new UriTemplate("{datetime}");
+            string result = template.Expand(new Dictionary<string, DateTime?>() { { "datetime", datetime } });
+            Assert.Equal("2017-05-09T16%3A11%3A22.0000000", result);
+        }
+
         [Fact]
         public void ShouldExpandDouble()
         {
@@ -41,6 +87,16 @@ namespace Earl.Tests
             string result = template.Expand(new { @double = @double });
             Assert.Equal("10.458", result);
         }
+
+        [Fact]
+        public void ShouldExpandDouble_Dictionary()
+        {
+            var @double = 10.458;
+            UriTemplate template = new UriTemplate("{double}");
+            string result = template.Expand(new Dictionary<string, double?>() { { "double", @double } });
+            Assert.Equal("10.458", result);
+        }
+
         [Fact]
         public void ShouldExpandFloat()
         {
@@ -49,12 +105,31 @@ namespace Earl.Tests
             string result = template.Expand(new { @float = @float });
             Assert.Equal("10.458", result);
         }
+
+        [Fact]
+        public void ShouldExpandFloat_Dictionary()
+        {
+            var @float = 10.458f;
+            UriTemplate template = new UriTemplate("{float}");
+            string result = template.Expand(new Dictionary<string, float?>() { { "float", @float } });
+            Assert.Equal("10.458", result);
+        }
+
         [Fact]
         public void ShouldExpandInt()
         {
             var @int = 10458;
             UriTemplate template = new UriTemplate("{int}");
             string result = template.Expand(new { @int = @int });
+            Assert.Equal("10458", result);
+        }
+
+        [Fact]
+        public void ShouldExpandInt_Dictionary()
+        {
+            var @int = 10458;
+            UriTemplate template = new UriTemplate("{int}");
+            string result = template.Expand(new Dictionary<string, int?>() { { "int", @int } });
             Assert.Equal("10458", result);
         }
 
@@ -81,6 +156,7 @@ namespace Earl.Tests
             string result = template.Expand(new Dictionary<string, object> { { "hello", "Hello World!" } });
             Assert.Equal("Hello+World!", result);
         }
+
         #endregion
 
         #region Level 2
@@ -282,6 +358,17 @@ namespace Earl.Tests
         {
             UriTemplate template = new UriTemplate("{list}");
             string result = template.Expand(new { list = new string[] { "red", "green", "blue" } });
+            Assert.Equal("red,green,blue", result);
+        }
+
+        [Fact]
+        public void ShouldExpandList_Dictionary()
+        {
+            UriTemplate template = new UriTemplate("{list}");
+            string result = template.Expand(new Dictionary<string, string[]>()
+            {
+                { "list", new string[] { "red", "green", "blue" } }
+            });
             Assert.Equal("red,green,blue", result);
         }
 
