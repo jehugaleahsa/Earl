@@ -1,3 +1,5 @@
+> *Archived 2026-03-28*: This project is very old and will no longer be maintained.
+
 # Earl
 
 Build URLs from RFC 6570 templates.
